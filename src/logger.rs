@@ -1,3 +1,5 @@
+use core::panic::PanicInfo;
+use cortex_m::asm;
 use log::{Level, LevelFilter, Log, Metadata, Record};
 use rtt_target::{rprintln, rtt_init_print};
 
@@ -44,4 +46,12 @@ pub fn init_with_level(level: LevelFilter) {
     log::set_max_level(level);
 
     log::trace!("Initialized logger. Level = {}.", level);
+}
+
+#[panic_handler]
+fn panic(info: &PanicInfo) -> ! {
+    log::error!("{}", info);
+
+    // trigger a hard fault to abort
+    asm::udf()
 }

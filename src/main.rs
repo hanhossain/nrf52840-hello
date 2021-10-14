@@ -3,7 +3,6 @@
 
 mod logger;
 
-use core::panic::PanicInfo;
 use nrf52840_hal as _;
 
 use cortex_m::asm;
@@ -16,14 +15,6 @@ fn main() -> ! {
     log::info!("Hello world!");
 
     loop {
-        panic!("oops");
+        asm::bkpt();
     }
-}
-
-#[panic_handler]
-fn panic(info: &PanicInfo) -> ! {
-    log::error!("{}", info);
-
-    // trigger a hard fault to abort
-    asm::udf()
 }
