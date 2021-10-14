@@ -10,7 +10,6 @@ cortex-m = "0.6.0"
 cortex-m-rt = "0.6.10"
 nrf52840-hal = "0.14.0"
 log = "0.4.14"
-panic-halt = "0.2.0"
 rtt-target = { version = "0.3.1", features = ["cortex-m"] }
 
 # this lets you use `cargo fix`!
@@ -23,4 +22,3 @@ bench = false
 codegen-units = 1 # better optimizations
 debug = true # symbols are nice and they don't increase the size on Flash
 lto = true # better optimizations
-
