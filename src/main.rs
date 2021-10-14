@@ -3,6 +3,7 @@
 
 mod logger;
 
+use nrf52840_hal as _;
 use panic_halt as _;
 
 use cortex_m::asm;
