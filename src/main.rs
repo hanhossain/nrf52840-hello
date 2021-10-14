@@ -24,8 +24,6 @@ fn main() -> ! {
 fn panic(info: &PanicInfo) -> ! {
     log::error!("{}", info);
 
-    loop {
-        // trigger a hard fault to abort
-        asm::udf()
-    }
+    // trigger a hard fault to abort
+    asm::udf()
 }
