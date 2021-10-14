@@ -1,17 +1,18 @@
 #![no_std]
 #![no_main]
 
+mod logger;
+
 use panic_halt as _;
 
 use cortex_m::asm;
 use cortex_m_rt::entry;
-use rtt_target::{rprintln, rtt_init_print};
+use log::LevelFilter;
 
 #[entry]
 fn main() -> ! {
-    rtt_init_print!();
-
-    rprintln!("Initialized rtt on nRF52840");
+    logger::init_with_level(LevelFilter::Trace);
+    log::info!("Hello world!");
 
     loop {
         asm::bkpt();
